@@ -57,31 +57,7 @@
 ### B. 前端架构 (Frontend Architecture - UniApp)
 
 1.  **目录结构 (Directory Structure):**
-    ```
-uniapp-trade-app/
-├── pages/                # 业务页面模块
-│   ├── login/            # 登录注册相关页面
-│   ├── market/           # 行情展示页面 (K线、深度图等)
-│   ├── trade/            # 交易操作页面 (下单、撤单)
-│   ├── strategy/         # 策略管理页面
-│   └── user/             # 用户中心 (资产、持仓、设置)
-├── static/               # 静态资源 (图片、字体等)
-├── components/           # 可复用UI组件
-│   ├── common/           # 通用基础组件
-│   └── business/         # 业务相关组件
-├── store/                # Vuex 状态管理
-│   ├── modules/          # 按模块划分的 Vuex store
-│   └── index.js          # Vuex 入口
-├── api/                  # API 请求封装
-│   ├── user.js
-│   ├── market.js
-│   └── index.js
-├── utils/                # 工具函数 (日期格式化、数据校验等)
-├── App.vue               # 应用配置，全局样式，监听应用生命周期
-├── main.js               # Vue 初始化入口文件
-├── manifest.json         # 应用配置文件 (AppID、图标、权限等)
-└── pages.json            # 页面路由及窗口表现配置
-    ```
+![前端目录结构](docs/images/frontend_directory_structure.png)
 2.  **状态管理 (State Management):** Vuex。用于管理用户登录状态、全局配置信息、需要跨页面共享的行情数据等。
 3.  **路由管理 (Routing):** `pages.json`。UniApp 框架自带，用于配置页面路径、窗口样式、导航栏等。
 4.  **API 通信 (API Communication):** 封装 `uni.request` 或引入 `axios`。统一处理请求拦截、响应拦截、错误处理、Token 携带、加载提示等。
@@ -98,36 +74,8 @@ uniapp-trade-app/
 
 1.  **项目结构 (Project Structure - Maven Multi-module):**
     ```
-trade-system/ (父项目)
-├── pom.xml                     # 父POM，管理依赖版本和插件
-├── trade-common/               # 通用工具和基础类模块
-│   └── src/main/java/com/trade/common/
-├── trade-mbg/                  # MyBatis Generator 模块 (可选，用于生成基础的Mapper, Model, XML)
-│   └── src/main/java/com/trade/mbg/
-├── trade-security/             # 安全控制模块 (Spring Security 配置)
-│   └── src/main/java/com/trade/security/
-├── trade-user/                 # 用户服务模块
-│   └── src/main/java/com/trade/user/
-├── trade-market-data/          # 行情数据服务模块
-│   └── src/main/java/com/trade/marketdata/
-├── trade-indicator/            # 技术指标服务模块
-│   └── src/main/java/com/trade/indicator/
-├── trade-strategy/             # 交易策略服务模块
-│   └── src/main/java/com/trade/strategy/
-├── trade-order/                # 订单服务模块
-│   └── src/main/java/com/trade/order/
-├── trade-risk/                 # 风险控制服务模块
-│   └── src/main/java/com/trade/risk/
-├── trade-backtest/             # 回测服务模块
-│   └── src/main/java/com/trade/backtest/
-├── trade-notification/         # 通知服务模块 (邮件、短信、App推送)
-│   └── src/main/java/com/trade/notification/
-├── trade-gateway/              # API网关模块 (Spring Cloud Gateway)
-│   └── src/main/java/com/trade/gateway/
-└── trade-application/          # 主应用模块 (聚合服务，提供启动类)
-    ├── src/main/java/com/trade/TradeApplication.java
-    └── src/main/resources/application.yml
-    ```
+![后端项目结构](docs/images/backend_project_structure.png)
+```
 2.  **API 设计 (API Design):**
     *   遵循 RESTful API 设计原则。
     *   使用 OpenAPI 3 (Swagger) 规范定义和管理 API 文档，通过 `springdoc-openapi-ui` 自动生成。
