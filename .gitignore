@@ -1,61 +1,9 @@
-# Compiled class files
+/.idea/
 *.class
-
-# Log files
+*.lst
 *.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*.log
-
-# IDE-specific files
-.idea/
-.vscode/
+.idea/*
+*/target/*
+*/.idea/*
 *.iml
 *.ipr
-*.iws
-.project
-.classpath
-.settings/
-.loadpath
-
-# Maven files
-/target/
-pom.xml.tag
-pom.xml.bak
-pom.xml.versionsBackup
-pom.xml.entries
-.repository/
-
-# Gradle files
-.gradle/
-build/
-
-# Eclipse files
-.metadata
-bin/
-tmp/
-
-# Mac files
-.DS_Store
-
-# Windows files
-Thumbs.db
-
-# Others
-*.bak
-*.swp
-*~
