@@ -12,6 +12,15 @@
     <modules>
         <module>trade-common</module>
         <module>trade-user</module>
+        <module>trade-security</module>
+        <module>trade-gateway</module>
+        <module>trade-mbg</module>
+        <module>trade-strategy</module>
+        <module>trade-risk</module>
+        <module>trade-indicator</module>
+        <module>trade-market-data</module>
+        <module>trade-backtest</module>
+        <module>trade-notifyication</module>
         <module>trade-application</module>
     </modules>
 
