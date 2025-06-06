@@ -21,10 +21,7 @@
         <module>trade-market-data</module>
         <module>trade-backtest</module>
         <module>trade-notifyication</module>
-<<<<<<< HEAD
         <module>trade-order</module>
-=======
->>>>>>> 669804c12d961ae2ec933db92dc1bc290f6bceda
         <module>trade-application</module>
     </modules>
 
