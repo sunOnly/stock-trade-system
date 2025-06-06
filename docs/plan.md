@@ -50,7 +50,12 @@
 
 ## `trade-common` 模块开发
 
+<<<<<<< HEAD
 - # TASK-CMN-001 `trade-common` 模块基础开发（通用工具类, 通用配置）[进行中]
+=======
+- # TASK-037 定义通用工具类和常量 [未开始]
+- # TASK-038 实现通用配置和基础组件 [未开始]
+>>>>>>> 669804c12d961ae2ec933db92dc1bc290f6bceda
 - # TASK-039 编写单元测试 [未开始]
 
 ## `trade-gateway` 模块开发
@@ -63,7 +68,13 @@
 
 ## `trade-market-data` 模块开发
 
+<<<<<<< HEAD
 - # TASK-MKT-001 `trade-market-data` 模块基础开发（Controller, Service, Mapper, DO）[进行中]
+=======
+- # TASK-045 实现行情数据采集接口 [未开始]
+- # TASK-046 实现行情数据存储逻辑 [未开始]
+- # TASK-047 实现行情数据推送机制 [未开始]
+>>>>>>> 669804c12d961ae2ec933db92dc1bc290f6bceda
 - # TASK-048 编写集成测试 [未开始]
 - # TASK-049 功能优化与代码审查 [未开始]
 
@@ -96,12 +107,22 @@
 
 ## `trade-strategy` 模块开发
 
+<<<<<<< HEAD
 - # TASK-STR-001 `trade-strategy` 模块基础开发（Controller, Service, Mapper, DO）[进行中]
+=======
+- # TASK-065 实现策略定义与管理模块 [未开始]
+- # TASK-066 实现策略回测与实盘交易接口 [未开始]
+>>>>>>> 669804c12d961ae2ec933db92dc1bc290f6bceda
 - # TASK-067 编写集成测试 [未开始]
 - # TASK-068 功能优化与代码审查 [未开始]
 
 ## `trade-user` 模块开发
 
+<<<<<<< HEAD
 - # TASK-USR-001 `trade-user` 模块基础开发（Controller, Service, Mapper, DO）[进行中]
+=======
+- # TASK-069 创建用户相关实体类、Mapper、Service、Controller [未开始]
+- # TASK-070 实现用户注册、登录、信息管理等功能 [未开始]
+>>>>>>> 669804c12d961ae2ec933db92dc1bc290f6bceda
 - # TASK-071 编写集成测试 [未开始]
 - # TASK-072 功能优化与代码审查 [未开始]
