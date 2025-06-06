@@ -1,0 +1,72 @@
+server:
+  port: 8081 # 服务端口，可以根据实际情况修改
+
+spring:
+  application:
+    name: trade-market-data # 应用名称
+  # datasource: # 数据库配置，可以从 yudao-cloud-mini 的公共配置中获取或在此处覆盖
+    # url: jdbc:mysql://localhost:3306/your_database?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    # username: your_username
+    # password: your_password
+    # driver-class-name: com.mysql.cj.jdbc.Driver
+  # redis: # Redis 配置，可以从 yudao-cloud-mini 的公共配置中获取或在此处覆盖
+    # host: localhost
+    # port: 6379
+    # password: 
+    # database: 0 
+
+# Tushare API 配置
+tushare:
+  api-url: http://api.tushare.pro
+  token: "YOUR_TUSHARE_TOKEN" # 请替换为您的 Tushare Token
+
+# Mybatis Plus 配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml # Mapper XML 文件路径
+  #type-aliases-package: com.trade.marketdata.entity # 实体类别名包路径，如果需要的话
+  global-config:
+    db-config:
+      id-type: auto # ID 生成策略
+      # table-prefix: t_ # 表前缀，如果需要的话
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰命名转换
+    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印SQL日志，生产环境建议关闭或使用更完善的日志方案
+
+# SpringDoc OpenAPI 配置 (Swagger)
+springdoc:
+  api-docs:
+    path: /v3/api-docs # API 文档路径
+  swagger-ui:
+    path: /swagger-ui.html # Swagger UI 路径
+    enabled: true # 开启 Swagger UI
+  group-configs:
+    - group: default
+      paths-to-match: /**
+      packages-to-scan: com.trade.marketdata.controller # Controller 包路径
+
+# Nacos 配置，用于服务注册与发现
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # Nacos 服务器地址
+        # namespace: # Nacos 命名空间，如果需要的话
+        # group: # Nacos 分组，如果需要的话
+      # config:
+        # server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        # file-extension: yaml # 配置文件格式
+        # namespace: ${spring.cloud.nacos.discovery.namespace}
+        # group: ${spring.cloud.nacos.discovery.group}
+        # shared-configs[0]: # 共享配置
+          # data-id: application-common.yaml
+          # group: DEFAULT_GROUP
+          # refresh: true
+
+# 日志配置 (可选，Spring Boot 默认使用 Logback)
+logging:
+  level:
+    com.trade.marketdata: DEBUG # 设置项目包的日志级别
+    # org.springframework: INFO
+    # org.apache.ibatis: DEBUG # 如果需要查看 MyBatis 执行的 SQL
+  # file:
+    # name: ./logs/trade-market-data.log # 日志文件路径

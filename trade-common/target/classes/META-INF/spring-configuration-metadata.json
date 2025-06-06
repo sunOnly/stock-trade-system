@@ -1,0 +1,73 @@
+{
+  "groups": [
+    {
+      "name": "swagger",
+      "type": "com.trade.common.config.SwaggerProperties",
+      "sourceType": "com.trade.common.config.SwaggerProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "swagger.api-base-package",
+      "type": "java.lang.String",
+      "description": "API文档生成基础路径",
+      "sourceType": "com.trade.common.config.SwaggerProperties"
+    },
+    {
+      "name": "swagger.description",
+      "type": "java.lang.String",
+      "description": "页面描述",
+      "sourceType": "com.trade.common.config.SwaggerProperties"
+    },
+    {
+      "name": "swagger.doc-description",
+      "type": "java.lang.String",
+      "description": "外部文档描述",
+      "sourceType": "com.trade.common.config.SwaggerProperties"
+    },
+    {
+      "name": "swagger.doc-url",
+      "type": "java.lang.String",
+      "description": "外部文档地址",
+      "sourceType": "com.trade.common.config.SwaggerProperties"
+    },
+    {
+      "name": "swagger.enable",
+      "type": "java.lang.Boolean",
+      "description": "是否开启Swagger",
+      "sourceType": "com.trade.common.config.SwaggerProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "swagger.group",
+      "type": "java.lang.String",
+      "description": "分组名称",
+      "sourceType": "com.trade.common.config.SwaggerProperties"
+    },
+    {
+      "name": "swagger.license",
+      "type": "java.lang.String",
+      "description": "许可证名称",
+      "sourceType": "com.trade.common.config.SwaggerProperties"
+    },
+    {
+      "name": "swagger.license-url",
+      "type": "java.lang.String",
+      "description": "许可证URL",
+      "sourceType": "com.trade.common.config.SwaggerProperties"
+    },
+    {
+      "name": "swagger.title",
+      "type": "java.lang.String",
+      "description": "页面标题",
+      "sourceType": "com.trade.common.config.SwaggerProperties"
+    },
+    {
+      "name": "swagger.version",
+      "type": "java.lang.String",
+      "description": "版本号",
+      "sourceType": "com.trade.common.config.SwaggerProperties"
+    }
+  ],
+  "hints": []
+}

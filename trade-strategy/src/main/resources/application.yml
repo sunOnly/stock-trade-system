@@ -1,0 +1,103 @@
+server:
+  port: 8083 # 策略服务端口
+
+spring:
+  application:
+    name: trade-strategy # 应用名称
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # Nacos 服务注册中心地址
+        namespace: trade_dev # Nacos 命名空间
+        group: DEFAULT_GROUP # Nacos 分组
+      config:
+        server-addr: 127.0.0.1:8848 # Nacos 配置中心地址
+        namespace: trade_dev # Nacos 命名空间
+        group: DEFAULT_GROUP # Nacos 分组
+        file-extension: yml # 配置文件格式
+        shared-configs: # 共享配置
+          - data-id: application-common.yml # 通用配置
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: trade-redis.yml # Redis 配置
+            group: DEFAULT_GROUP
+            refresh: true
+          - data-id: trade-mybatis-plus.yml # MyBatis Plus 配置
+            group: DEFAULT_GROUP
+            refresh: true
+#  # Sentinel 配置 (按需开启)
+#  sentinel:
+#    transport:
+#      dashboard: localhost:8080 # Sentinel 控制台地址
+#      port: 8719 # Sentinel 客户端与控制台通信端口
+#    datasource:
+#      ds1:
+#        nacos:
+#          server-addr: ${spring.cloud.nacos.config.server-addr}
+#          namespace: ${spring.cloud.nacos.config.namespace}
+#          dataId: ${spring.application.name}-sentinel-rules
+#          groupId: SENTINEL_GROUP
+#          data-type: json
+#          rule-type: flow
+
+# Seata 配置 (按需开启)
+#seata:
+#  tx-service-group: trade_tx_group # 事务组名称，需要与 Seata Server 配置一致
+#  service:
+#    vgroup-mapping:
+#      trade_tx_group: default # 事务组与 Seata Server 实例的映射关系
+#  registry:
+#    type: nacos
+#    nacos:
+#      server-addr: ${spring.cloud.nacos.discovery.server-addr}
+#      namespace: ${spring.cloud.nacos.discovery.namespace}
+#      group: SEATA_GROUP
+#  config:
+#    type: nacos
+#    nacos:
+#      server-addr: ${spring.cloud.nacos.config.server-addr}
+#      namespace: ${spring.cloud.nacos.config.namespace}
+#      group: SEATA_GROUP
+
+# 日志配置
+logging:
+  level:
+    com.trade.strategy: debug
+    org.springframework: info
+    org.apache.ibatis: info
+
+# Actuator 配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' # 开放所有端点，生产环境建议按需开放
+  endpoint:
+    health:
+      show-details: always # 显示健康检查详情
+
+# MyBatis Plus 配置 (如果 trade-mybatis-plus.yml 中未配置或需要覆盖)
+#mybatis-plus:
+#  mapper-locations: classpath*:/mapper/**/*.xml # Mapper XML 文件位置
+#  global-config:
+#    db-config:
+#      id-type: assign_id # ID 生成策略
+
+# 策略引擎相关配置 (示例)
+strategy:
+  engine:
+    thread-pool-size: 10 # 策略执行线程池大小
+  data-source:
+    type: local # 数据源类型，例如: local, remote_api, message_queue
+    # ... 其他数据源相关配置
+
+# 开放 API 文档配置 (如果需要)
+#springdoc:
+#  api-docs:
+#    path: /v3/api-docs
+#  swagger-ui:
+#    path: /swagger-ui.html
+#    display-request-duration: true
+#    groups-order: DESC
+#    operations-sorter: alpha
+#    tags-sorter: alpha

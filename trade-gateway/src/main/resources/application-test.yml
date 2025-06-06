@@ -1,0 +1,63 @@
+spring:
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password: #
+  cloud:
+    gateway:
+      routes:
+        - id: trade-user
+          uri: lb://trade-user
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=1
+        - id: trade-order
+          uri: lb://trade-order
+          predicates:
+            - Path=/order/**
+          filters:
+            - StripPrefix=1
+        - id: trade-market-data
+          uri: lb://trade-market-data
+          predicates:
+            - Path=/market-data/**
+          filters:
+            - StripPrefix=1
+        - id: trade-notification
+          uri: lb://trade-notification
+          predicates:
+            - Path=/notification/**
+          filters:
+            - StripPrefix=1
+        - id: trade-strategy
+          uri: lb://trade-strategy
+          predicates:
+            - Path=/strategy/**
+          filters:
+            - StripPrefix=1
+        - id: trade-risk
+          uri: lb://trade-risk
+          predicates:
+            - Path=/risk/**
+          filters:
+            - StripPrefix=1
+        - id: trade-backtest
+          uri: lb://trade-backtest
+          predicates:
+            - Path=/backtest/**
+          filters:
+            - StripPrefix=1
+        - id: trade-indicator
+          uri: lb://trade-indicator
+          predicates:
+            - Path=/indicator/**
+          filters:
+            - StripPrefix=1
+        - id: trade-application
+          uri: lb://trade-application
+          predicates:
+            - Path=/application/**
+          filters:
+            - StripPrefix=1

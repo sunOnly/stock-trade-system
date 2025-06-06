@@ -1,0 +1,55 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/trade-user?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password: #
+  mail:
+    host: smtp.qq.com
+    username: null
+    password: null
+    properties:
+      mail.smtp.ssl.enable: true
+    default-encoding: UTF-8
+  thymeleaf:
+    cache: false
+    mode: HTML5
+    encoding: UTF-8
+    servlet.content-type: text/html
+mybatis-plus:
+  mapper-locations: 'classpath*:mapper/*.xml'
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      table-prefix: ums_
+      field-strategy: not_empty
+logging:
+  level:
+    com:
+      trade:
+        user: info
+  file:
+    path: /var/log/trade-user
+secure:
+  ignored:
+    urls:
+      - /swagger-resources/**
+      - /webjars/**
+      - /v2/**
+      - /swagger-ui.html
+      - /doc.html
+      - /role/**
+      - /permission/**
+      - /admin/login
+      - /admin/register
+      - /admin/info
+      - /admin/logout
+      - /admin/updatePassword
+      - /admin/refreshToken

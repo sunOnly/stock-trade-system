@@ -1,0 +1,65 @@
+# Spring Boot 应用配置
+server:
+  port: 18083 # 服务端口，避免冲突
+
+spring:
+  application:
+    name: trade-indicator # 应用名称
+  profiles:
+    active: dev # 默认激活 dev 环境
+
+# MyBatis Plus 配置
+mybatis-plus:
+  # Mapper XML 文件的位置
+  mapper-locations: classpath*:mapper/**/*.xml
+  # 实体类所在的包
+  type-aliases-package: com.stock.trade.indicator.dal.dataobject
+  global-config:
+    db-config:
+      # 主键类型 AUTO 自增
+      id-type: AUTO
+      # 逻辑删除配置
+      logic-delete-field: deleted # 全局逻辑删除的实体字段名
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+    banner: false # 关闭 MyBatis Plus 的 Banner
+  configuration:
+    # 是否开启驼峰命名自动映射
+    map-underscore-to-camel-case: true
+    # SQL 日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# SpringDoc (OpenAPI 3) 配置
+springdoc:
+  api-docs:
+    # 是否开启 API 文档接口
+    enabled: true
+    # API 文档访问路径
+    path: /v3/api-docs
+  swagger-ui:
+    # 是否开启 Swagger UI
+    enabled: true
+    # Swagger UI 访问路径
+    path: /swagger-ui.html
+    # 默认 API 分组名称
+    display-request-duration: true
+    # tagsSorter 和 operationsSorter 这两个参数可以设置为 alpha 或者 method
+    tags-sorter: alpha
+    operations-sorter: alpha
+  # 配置扫描的包路径，默认为全部
+  packages-to-scan: com.stock.trade.indicator.controller
+  # 配置 API 的基本信息
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  # API 分组配置
+  group-configs:
+    - group: default
+      paths-to-match: /**
+      packages-to-scan: com.stock.trade.indicator.controller
+
+# Logging 配置
+logging:
+  level:
+    com.stock.trade: DEBUG # 项目日志级别
+    org.springframework: INFO
+    org.mybatis: INFO

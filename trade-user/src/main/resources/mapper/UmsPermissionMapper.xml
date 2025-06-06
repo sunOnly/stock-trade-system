@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trade.user.mapper.UmsPermissionMapper">
+
+    <resultMap id="BaseResultMap" type="com.trade.user.model.UmsPermission">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="pid" jdbcType="BIGINT" property="pid" />
+        <result column="name" jdbc="VARCHAR" property="name" />
+        <result column="value" jdbcType="VARCHAR" property="value" />
+        <result column="icon" jdbcType="VARCHAR" property="icon" />
+        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="uri" jdbcType="VARCHAR" property="uri" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="sort" jdbcType="INTEGER" property="sort" />
+    </resultMap>
+
+    <resultMap id="treeList" type="com.trade.user.model.UmsPermission" extends="BaseResultMap">
+        <collection property="children" ofType="com.trade.user.model.UmsPermission" select="com.trade.user.mapper.UmsPermissionMapper.treeList" column="id"></collection>
+    </resultMap>
+
+    <select id="treeList" resultMap="treeList">
+        SELECT
+        id,pid,name,value,icon,type,uri,status,create_time,sort
+        FROM
+        ums_permission
+        WHERE
+        pid = #{id}
+        ORDER BY sort DESC
+    </select>
+</mapper>

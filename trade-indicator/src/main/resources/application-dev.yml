@@ -1,0 +1,24 @@
+# 开发环境配置
+
+spring:
+  # 数据库配置
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/stock_trade_indicator?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: root # 数据库用户名
+    password: password # 数据库密码
+    driver-class-name: com.mysql.cj.jdbc.Driver # MySQL 8.x 驱动
+    # HikariCP 连接池配置
+    hikari:
+      connection-timeout: 30000 # 连接超时时间 (毫秒)
+      idle-timeout: 600000 # 空闲连接超时时间 (毫秒)
+      max-lifetime: 1800000 # 连接最大生命周期 (毫秒)
+      maximum-pool-size: 10 # 最大连接数
+      minimum-idle: 5 # 最小空闲连接数
+      pool-name: IndicatorHikariPool # 连接池名称
+
+# 日志文件配置
+logging:
+  file:
+    name: ./logs/trade-indicator-dev.log # 日志文件路径和名称
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n" # 日志文件输出格式

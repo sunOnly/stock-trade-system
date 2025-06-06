@@ -1,0 +1,125 @@
+server:
+  port: 8080 # 网关服务端口
+
+spring:
+  application:
+    name: trade-gateway # 应用名称
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # Nacos Server地址
+        namespace: # Nacos命名空间ID，根据实际情况配置
+        group: DEFAULT_GROUP # Nacos分组，根据实际情况配置
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr} # Nacos配置中心地址，同服务发现
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        group: ${spring.cloud.nacos.discovery.group}
+        file-extension: yml # 配置文件格式
+        shared-configs: # 共享配置
+          - data-id: application-common.yml # 通用配置
+            group: ${spring.cloud.nacos.discovery.group}
+            refresh: true # 是否动态刷新
+        # ext-config: # 扩展配置，可以加载多个配置文件
+        #   - data-id: trade-gateway-ext.yml
+        #     group: ${spring.cloud.nacos.discovery.group}
+        #     refresh: true
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 开启从注册中心动态创建路由的功能
+          lower-case-service-id: true # 将服务名转为小写进行路由
+      routes:
+        # 示例：路由到用户服务 (trade-user)
+        - id: trade-user-route
+          uri: lb://trade-user # lb代表从Nacos负载均衡，trade-user是服务名
+          predicates:
+            - Path=/user/** # 所有/user/**的请求都路由到trade-user服务
+          filters:
+            - StripPrefix=1 # 转发前去掉第一层路径，例如 /user/login -> /login
+            # - AddRequestHeader=X-Request-Source, gateway # 添加请求头
+
+        # 示例：路由到行情服务 (trade-market)
+        - id: trade-market-route
+          uri: lb://trade-market
+          predicates:
+            - Path=/market/**
+          filters:
+            - StripPrefix=1
+
+        # 示例：路由到订单服务 (trade-order)
+        - id: trade-order-route
+          uri: lb://trade-order
+          predicates:
+            - Path=/order/**
+          filters:
+            - StripPrefix=1
+
+        # 示例：路由到认证服务 (trade-auth) - 如果有单独的认证服务
+        # 如果认证逻辑在网关或者trade-security中，则不需要此路由
+        # - id: trade-auth-route
+        #   uri: lb://trade-auth
+        #   predicates:
+        #     - Path=/auth/**
+        #   filters:
+        #     - StripPrefix=1
+
+        # 静态资源路由 (如果前端项目部署在网关之后)
+        # - id: static-content-route
+        #   uri: http://localhost:8081 # 前端静态资源服务器地址
+        #   predicates:
+        #     - Path=/static/**, /
+        #   filters:
+        #     - RewritePath=/static/(?<segment>.*), /\${segment}
+
+  # 日志配置 (可选, Spring Boot默认有日志输出)
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG # 网关日志级别
+    reactor.netty.http.client: DEBUG # Netty客户端日志级别
+    com.trade.gateway: INFO # 自定义包日志级别
+
+# Actuator端点配置 (可选, 用于监控和管理)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' # 暴露所有端点，生产环境请按需配置
+  endpoint:
+    health:
+      show-details: always # 显示健康检查详情
+
+# Sentinel配置 (可选, 用于流量控制和熔断降级)
+# spring:
+#   cloud:
+#     sentinel:
+#       transport:
+#         dashboard: localhost:8080 # Sentinel控制台地址
+#         port: 8719 # Sentinel API端口
+#       datasource:
+#         ds1:
+#           nacos:
+#             server-addr: ${spring.cloud.nacos.discovery.server-addr}
+#             namespace: ${spring.cloud.nacos.discovery.namespace}
+#             group-id: ${spring.cloud.nacos.discovery.group}
+#             data-id: sentinel-rules-gateway.json
+#             rule-type: flow # 流控规则
+
+# Seata 分布式事务配置 (如果需要)
+# seata:
+#   tx-service-group: trade_tx_group # 事务组
+#   service:
+#     vgroup-mapping:
+#       trade_tx_group: default
+#   registry:
+#     type: nacos
+#     nacos:
+#       server-addr: ${spring.cloud.nacos.discovery.server-addr}
+#       namespace: ${spring.cloud.nacos.discovery.namespace}
+#       group: SEATA_GROUP
+#   config:
+#     type: nacos
+#     nacos:
+#       server-addr: ${spring.cloud.nacos.discovery.server-addr}
+#       namespace: ${spring.cloud.nacos.discovery.namespace}
+#       group: SEATA_GROUP

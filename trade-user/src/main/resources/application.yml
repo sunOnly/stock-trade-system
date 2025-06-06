@@ -1,0 +1,93 @@
+server:
+  port: 8081 # 用户服务端口，避免与网关或其他服务冲突
+
+spring:
+  application:
+    name: trade-user # 应用名称
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 # Nacos Server地址
+        namespace: # Nacos命名空间ID，根据实际情况配置
+        group: DEFAULT_GROUP # Nacos分组，根据实际情况配置
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr} # Nacos配置中心地址
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        group: ${spring.cloud.nacos.discovery.group}
+        file-extension: yml # 配置文件格式
+        shared-configs: # 共享配置
+          - data-id: application-common.yml # 通用应用配置
+            group: ${spring.cloud.nacos.discovery.group}
+            refresh: true
+          - data-id: datasource-mysql-config.yml # MySQL数据源配置
+            group: ${spring.cloud.nacos.discovery.group}
+            refresh: true
+        # ext-config: # 可选的扩展配置
+        #   - data-id: trade-user-ext.yml
+        #     group: ${spring.cloud.nacos.discovery.group}
+        #     refresh: true
+
+  # Spring Profiles: 用于区分不同环境的配置 (dev, test, prod)
+  profiles:
+    active: dev # 默认激活开发环境配置
+
+# MyBatis Plus 配置
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml # Mapper XML文件位置
+  # type-aliases-package: com.trade.user.entity # 实体类别名扫描包 (如果需要)
+  global-config:
+    db-config:
+      id-type: auto # 全局主键策略 (推荐使用AUTO或ASSIGN_ID，具体根据业务调整)
+      # table-prefix: t_ # 全局表前缀 (如果表名有统一前缀)
+      # logic-delete-field: deleted # 全局逻辑删除字段名 (如果使用逻辑删除)
+      # logic-not-delete-value: 0 # 逻辑未删除值
+      # logic-delete-value: 1 # 逻辑已删除值
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰命名转换
+    # log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # MyBatis日志实现 (开发时可开启)
+
+# 日志配置
+logging:
+  level:
+    com.trade.user: INFO # 用户模块日志级别
+    com.trade.user.mapper: DEBUG # Mapper接口日志级别 (开发时可设为DEBUG查看SQL)
+    org.springframework.web: INFO
+    org.springframework.security: INFO # 如果集成了Spring Security
+  # file:
+  #   name: ./logs/trade-user.log # 日志文件路径和名称
+
+# Actuator端点配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' # 暴露所有端点，生产环境请按需配置
+  endpoint:
+    health:
+      show-details: always # 显示健康检查详情
+
+# 如果需要集成其他组件，如Redis、RabbitMQ等，在此处添加相应配置
+# spring:
+#   data:
+#     redis:
+#       host: localhost
+#       port: 6379
+#       # password: yourpassword
+#   rabbitmq:
+#     host: localhost
+#     port: 5672
+#     username: guest
+#     password: guest
+
+# Swagger/OpenAPI 配置 (如果使用SpringDoc)
+# springdoc:
+#   api-docs:
+#     path: /v3/api-docs # API文档路径
+#   swagger-ui:
+#     path: /swagger-ui.html # Swagger UI路径
+#     display-request-duration: true
+#     groups-order: DESC
+#   group-configs:
+#     - group: 'User API'
+#       paths-to-match: '/user/**'
+#       packages-to-scan: com.trade.user.controller

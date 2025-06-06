@@ -1,0 +1,102 @@
+spring:
+  application:
+    name: trade-order # 服务名
+  cloud:
+    nacos:
+      # Nacos 作为注册中心的配置项
+      discovery:
+        server-addr: 127.0.0.1:8848 # Nacos 服务器地址
+#        namespace: # Nacos 命名空间
+#        group: # Nacos 分组
+      # Nacos 作为配置中心的配置项
+      config:
+        server-addr: 127.0.0.1:8848 # Nacos 服务器地址
+        file-extension: yaml # 文件后缀名
+#        namespace: # Nacos 命名空间
+#        group: # Nacos 分组
+#        shared-configs: # 共享配置
+#          - data-id: common.yaml # 共享配置的 Data ID
+#            group: DEFAULT_GROUP # 共享配置的 Group
+#            refresh: true # 是否动态刷新
+#        extension-configs: # 拓展配置
+#          - data-id:
+#            group:
+#            refresh: true
+
+# HTTP Server 相关配置
+server:
+  port: 8083 # 服务器端口，默认为 8080
+  servlet:
+    context-path: /trade-order # 应用的访问路径，默认为 /
+  undertow:
+    threads:
+      # 设置 IO 线程数，它主要执行非阻塞的任务，它们会负责多个连接，默认设置每个 CPU 核心一个线程
+      # 不要设置过大，如果过大，启动项目会报错：打开文件数过多
+      io: 16
+      # 阻塞任务线程池，当执行类似 Servlet 请求阻塞 IO 操作，Undertow 会从这个线程池中取得线程
+      # 它的值设置取决于系统线程执行任务的阻塞系数，默认值是 IO 线程数 * 8
+      worker: 256
+    buffer-size: 1024 # 每块 buffer 的大小，越小空间占用越小，一旦设置过小，对于大的请求则会打开更多 buffer，所以建议不要设置过小
+    direct-buffers: true # 是否分配的直接内存
+
+# MyBatis Plus 相关配置
+mybatis-plus:
+  # Mapper XML 文件的路径
+  mapper-locations: classpath*:mapper/*.xml
+  # 类型别名扫描包，多个package用逗号或者分号分隔
+  type-aliases-package: com.stock.trade.order.dal.dataobject
+  # 全局配置
+  global-config:
+    db-config:
+      # 全局默认主键类型
+      id-type: ASSIGN_ID
+      # 逻辑删除配置
+      logic-delete-field: deleted # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      logic-delete-value: true # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: false # 逻辑未删除值(默认为 0)
+    banner: false # 是否关闭 MyBatis Plus 的 Banner
+  # MyBatis Plus 的具体配置
+  configuration:
+    # 是否开启驼峰命名自动映射，即从经典数据库列名 A_COLUMN（下划线命名） 到经典 Java 属性名 aColumn（驼峰命名） 的类似映射。
+    map-underscore-to-camel-case: true
+    # 对于数据库中值为 null 的字段，默认情况下，MyBatis 在返回的 Map 中并不会包含这个字段的键值对。
+    # 通过设置 callSettersOnNulls 为 true，MyBatis 会在返回的 Map 中包含值为 null 的字段，并将其值设置为 null。
+    call-setters-on-nulls: true
+    # 对于数据库中值为 null 的字段，默认情况下，MyBatis 在返回的实体类对象中会将该字段设置为 null。
+    # 通过设置 default-enum-type-handler 为 org.apache.ibatis.type.EnumOrdinalTypeHandler，MyBatis 会将枚举类型的字段值转换为其序数（ordinal）进行存储和查询。
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+
+# Spring Doc 相关配置
+springdoc:
+  # Knife4j 配置
+  knife4j:
+    enable: true # 是否开启 Knife4j，默认为 false
+    setting:
+      language: zh_CN # API 列表的语言，可选 zh_CN、en_US
+  # API 分组
+  group-configs:
+    - group: default
+      paths-to-match: /**
+      packages-to-scan: com.stock.trade.order.controller # 分组的 Controller 包路径
+
+# Actuator 相关配置
+management:
+  # /actuator/health 端点配置
+  health:
+    # 默认情况下，/actuator/health 只会展示整体的应用健康情况，通过设置为 SHOW_ALWAYS 后，可以展示详细的应用健康情况，例如：磁盘、数据库等。
+    show-details: ALWAYS
+  # /actuator/metrics 端点配置
+  metrics:
+    # /actuator/metrics 端点，默认情况下不会展示 tag 标签。通过设置为 true 后，可以展示 tag 标签，更加清晰。
+    tags:
+      application: ${spring.application.name}
+  # /actuator 端点配置
+  endpoints:
+    # Web 端点的暴露范围，设置为 * 时，表示暴露所有端点。
+    web:
+      exposure:
+        include: '*'
+    # JMX 端点的暴露范围，设置为 * 时，表示暴露所有端点。
+    jmx:
+      exposure:
+        include: '*'

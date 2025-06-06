@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: trade-user # 应用名称，必须与Nacos中配置的Data ID相关联或作为前缀
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848 # Nacos配置中心地址
+        namespace: # Nacos命名空间ID，根据实际情况配置
+        group: DEFAULT_GROUP # Nacos分组，根据实际情况配置
+        file-extension: yml # 拉取配置文件的格式
+        # data-id: trade-user.yml # 如果需要显式指定主配置文件Data ID，通常由shared-configs和ext-config管理
+        # refresh-enabled: true # 是否开启动态刷新，默认为true
+      discovery:
+        server-addr: ${spring.cloud.nacos.config.server-addr} # Nacos服务发现地址，通常与配置中心地址一致
+        namespace: ${spring.cloud.nacos.config.namespace}
+        group: ${spring.cloud.nacos.config.group}
+
+# 日志配置，也可以放在application.yml中，但bootstrap.yml中配置可以更早生效
+# logging:
+#   config: classpath:logback-spring.xml # 指定日志配置文件
