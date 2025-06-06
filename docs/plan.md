@@ -32,3 +32,76 @@
 - # TASK-025 创建 `OrderApplication.java` 启动类 [已完成]
 - # TASK-026 编写集成测试 [未开始]
 - # TASK-027 功能优化与代码审查 [未开始]
+
+## `trade-application` 模块开发
+
+- # TASK-028 创建基础结构和配置文件 [未开始]
+- # TASK-029 实现核心应用逻辑 [未开始]
+- # TASK-030 编写集成测试 [未开始]
+- # TASK-031 功能优化与代码审查 [未开始]
+
+## `trade-backtest` 模块开发
+
+- # TASK-032 创建回测引擎核心类 [未开始]
+- # TASK-033 实现回测数据处理逻辑 [未开始]
+- # TASK-034 实现回测结果分析与展示 [未开始]
+- # TASK-035 编写集成测试 [未开始]
+- # TASK-036 功能优化与代码审查 [未开始]
+
+## `trade-common` 模块开发
+
+- # TASK-CMN-001 `trade-common` 模块基础开发（通用工具类, 通用配置）[进行中]
+- # TASK-039 编写单元测试 [未开始]
+
+## `trade-gateway` 模块开发
+
+- # TASK-040 配置网关路由规则 [未开始]
+- # TASK-041 实现统一认证和鉴权 [未开始]
+- # TASK-042 实现API限流和熔断 [未开始]
+- # TASK-043 编写集成测试 [未开始]
+- # TASK-044 功能优化与代码审查 [未开始]
+
+## `trade-market-data` 模块开发
+
+- # TASK-MKT-001 `trade-market-data` 模块基础开发（Controller, Service, Mapper, DO）[进行中]
+- # TASK-048 编写集成测试 [未开始]
+- # TASK-049 功能优化与代码审查 [未开始]
+
+## `trade-mbg` 模块开发
+
+- # TASK-050 配置MyBatis Generator [未开始]
+- # TASK-051 生成各模块DAO层代码 [未开始]
+
+## `trade-notification` 模块开发
+
+- # TASK-052 实现消息通知服务接口 [未开始]
+- # TASK-053 对接邮件、短信等通知渠道 [未开始]
+- # TASK-054 编写集成测试 [未开始]
+- # TASK-055 功能优化与代码审查 [未开始]
+
+## `trade-risk` 模块开发
+
+- # TASK-056 实现风控规则定义模块 [未开始]
+- # TASK-057 实现风控规则执行引擎 [未开始]
+- # TASK-058 实现风险预警与处理机制 [未开始]
+- # TASK-059 编写集成测试 [未开始]
+- # TASK-060 功能优化与代码审查 [未开始]
+
+## `trade-security` 模块开发
+
+- # TASK-061 实现用户认证与授权逻辑 [未开始]
+- # TASK-062 实现API接口安全防护 [未开始]
+- # TASK-063 编写集成测试 [未开始]
+- # TASK-064 功能优化与代码审查 [未开始]
+
+## `trade-strategy` 模块开发
+
+- # TASK-STR-001 `trade-strategy` 模块基础开发（Controller, Service, Mapper, DO）[进行中]
+- # TASK-067 编写集成测试 [未开始]
+- # TASK-068 功能优化与代码审查 [未开始]
+
+## `trade-user` 模块开发
+
+- # TASK-USR-001 `trade-user` 模块基础开发（Controller, Service, Mapper, DO）[进行中]
+- # TASK-071 编写集成测试 [未开始]
+- # TASK-072 功能优化与代码审查 [未开始]

@@ -4,18 +4,28 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.trade</groupId>
-    <artifactId>stock-trading-system</artifactId>
+    <groupId>com.stock</groupId>
+    <artifactId>stock-trade-system</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <modules>
         <module>trade-common</module>
         <module>trade-user</module>
+        <module>trade-security</module>
+        <module>trade-gateway</module>
+        <module>trade-mbg</module>
+        <module>trade-strategy</module>
+        <module>trade-risk</module>
+        <module>trade-indicator</module>
+        <module>trade-market-data</module>
+        <module>trade-backtest</module>
+        <module>trade-notifyication</module>
+        <module>trade-order</module>
         <module>trade-application</module>
     </modules>
 
-    <name>超短线交易系统</name>
+    <name>量化交易系统</name>
     <description>基于Spring Boot的A股超短线交易系统</description>
 
     <parent>

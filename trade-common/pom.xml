@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.trade</groupId>
-        <artifactId>stock-trading-system</artifactId>
+    <groupId>com.stock</groupId>
+        <artifactId>stock-trade-system</artifactId>
         <version>1.0.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <groupId>com.stock.trading</groupId>
+    <groupId>com.stock</groupId>
     <artifactId>trade-common</artifactId>
     <version>1.0.0</version>
     <name>trade-common</name>

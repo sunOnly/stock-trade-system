@@ -86,6 +86,15 @@
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table> -->
 
+        <!-- 股票信息表 (新增) -->
+        <table tableName="t_stock_info" domainObjectName="StockInfo">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="listing_date" javaType="java.time.LocalDate"/>
+            <columnOverride column="delisting_date" javaType="java.time.LocalDate"/>
+            <columnOverride column="create_time" javaType="java.time.LocalDateTime"/>
+            <columnOverride column="update_time" javaType="java.time.LocalDateTime"/>
+        </table>
+
         <!-- =========================================================================================== -->
         <!-- =================================  以下为具体业务表的配置 ================================= -->
         <!-- =========================================================================================== -->

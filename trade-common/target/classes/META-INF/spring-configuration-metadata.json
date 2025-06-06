@@ -35,8 +35,7 @@
       "name": "swagger.enable",
       "type": "java.lang.Boolean",
       "description": "是否开启Swagger",
-      "sourceType": "com.trade.common.config.SwaggerProperties",
-      "defaultValue": false
+      "sourceType": "com.trade.common.config.SwaggerProperties"
     },
     {
       "name": "swagger.group",

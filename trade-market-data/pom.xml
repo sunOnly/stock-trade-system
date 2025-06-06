@@ -4,11 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.trade</groupId>
-        <artifactId>trade-system</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>com.stock</groupId>
+        <artifactId>stock-trade-system</artifactId>
+        <version>1.0.0</version>
     </parent>
 
+    <groupId>com.stock</groupId>
     <artifactId>trade-market-data</artifactId>
     <packaging>jar</packaging>
 
@@ -50,7 +51,7 @@
 
         <!-- trade-common -->
         <dependency>
-            <groupId>com.trade</groupId>
+            <groupId>com.stock</groupId>
             <artifactId>trade-common</artifactId>
             <version>${project.version}</version>
         </dependency>

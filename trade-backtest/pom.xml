@@ -4,11 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.trade</groupId>
-        <artifactId>trade-system</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>com.stock</groupId>
+        <artifactId>stock-trade-system</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
-
+    <groupId>com.stock</groupId>
     <artifactId>trade-backtest</artifactId>
     <packaging>jar</packaging>
 
@@ -50,28 +51,28 @@
 
         <!-- trade-common -->
         <dependency>
-            <groupId>com.trade</groupId>
+            <groupId>com.stock</groupId>
             <artifactId>trade-common</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <!-- trade-strategy (to use defined strategies for backtesting) -->
         <dependency>
-            <groupId>com.trade</groupId>
+            <groupId>com.stock</groupId>
             <artifactId>trade-strategy</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <!-- trade-market-data (to get historical market data for backtesting) -->
         <dependency>
-            <groupId>com.trade</groupId>
+            <groupId>com.stock</groupId>
             <artifactId>trade-market-data</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <!-- trade-indicator (if backtesting involves indicators not directly part of strategy module) -->
         <dependency>
-            <groupId>com.trade</groupId>
+            <groupId>com.stock</groupId>
             <artifactId>trade-indicator</artifactId>
             <version>${project.version}</version>
         </dependency>
